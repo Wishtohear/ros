@@ -83,6 +83,18 @@ catkin_create_pkg myrobot std_msgs rospy roscpp
 <description></description><!-->包的描述-->
 <license>TODO</license><!-->许可-->
 ```
+修改包的依赖信息
+```xml
+<build_depend>roscpp</build_depend>
+<build_depend>rospy</build_depend>
+<build_depend>std_msgs</build_depend>
+<build_export_depend>roscpp</build_export_depend>
+<build_export_depend>rospy</build_export_depend>
+<build_export_depend>std_msgs</build_export_depend>
+<exec_depend>roscpp</exec_depend>
+<exec_depend>rospy</exec_depend>
+<exec_depend>std_msgs</exec_depend>
+```
 加入ros包路径
 
 列出与ros有关的环境变量

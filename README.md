@@ -163,3 +163,92 @@ catkin_package(
 cd ~/cakin_ws
 catkin_make
 ```
+### 编写action服务端和客户端
+编写服务端
+
+创建testserver.py文件，内容如下
+```python
+# ! /usr/bin/env python
+#testserver.py
+import rospy
+import time
+import actionlib
+from myrobot.msg import testAction,testGoal,testResult,testFeedBack
+
+def do_time(goal):
+    fineshed_time = 0
+    if goal.goal_time>60:
+       #如果 goal_time)60则不提供服务
+        result = testResult()
+        result. finished_time = finished_time
+#创建一个结果类
+        server. set_aborted(result,"The goal num must less then 60")#把状态设为终止，两个参数，一个结果类，一个返回的字符串信息return
+    while finished_time<goal. goal_time :
+#任务处理循环
+        if server. is_preempt_requested():
+#判断任务是否被其他客户抢占，如果被抢占，则
+            result = testResult()
+            result. finished_time = finished_time
+#创建一个结果类
+            server. set_preempted(result,"server is preempted")
+#设为被抢占状态，返回一个字符串信息
+        return
+    time. sleep(1.0)
+    finished_time += 1
+#睡眠1秒，finished_time加1
+    feedback = testFeedback()
+    feedback. remained_time = goal. goal_time-finished_time
+#创建反馈类
+    server. publish_feedback(feedback)
+#发布反馈状态，参数是一个反馈类变量
+#任务处理循环结束后，处理最后的结果
+result = testResult()
+result. finished_time = finished_time
+#创建一个结果类
+server. set_succeeded(result,"completed")
+#设置服务状态为成功
+if__name__=="__mian__":
+rospy.init_node("testserve")
+server= actionlib.SimpleActionServer("test",testAction,do_time,False)
+server.start()
+rospy.spin()
+
+```
+编写客户端
+
+创建testlient.py文件，内容如下
+```python
+# ! /usr/bin/env python
+#testlient.py
+import rospy 
+import time 
+import actionlib#引入actionlib库
+from myrobot.msg import testAction, testGoal, testResult, testFeedback
+#引入action编译产生的消息类
+def feedback_cb(feedback):
+#定义一个回调函数，处理服务端的中间反馈，参数feedback是testFeedback类型的变量
+    rospy. loginfo("Feedback"+str(feedback. remained time))
+rospy. init_node("testclient")
+client = actionlib. SimpleActionClient("test",testAction)
+client. wait_for_server()
+#连接服务器
+goal = testGoal()
+goal. goal_time = 10#构造一个目标
+client. send_goal(goal,feedback_cb=feedback_cb)
+#发送目标到服务端，并设置一个回调函数用于处理服务返回的中间状态
+client. wait_for_result()
+#等待服务端结束
+rospy. loginfo("finished test action")
+```
+运行
+
+运行前先设置好权限
+```bash
+chmod +x test*.py
+```
+然后依次运行
+```bash
+roscore
+rosrun myrobot testserver.py
+rosrun myrobot testlient.py
+```

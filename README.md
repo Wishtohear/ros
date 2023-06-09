@@ -67,8 +67,11 @@ rosrun turtlesim turtlesim_node
  cd ~/catkin_ws
  catkin_make
  ```
-创建ros包
-
+创建ros包,第一个参数是包的名称，后面的是项目的依赖包，可以给很多个
+```bash
+cd ~/catkin_ws/src
+catkin_create_pkg myrobot std_msgs rospy roscpp
+```
 修改包的信息
 
 在包目录下有个package.xml文件，记录的包原始数据信息

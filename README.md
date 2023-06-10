@@ -30,7 +30,10 @@ sudo rosdep init
 rosdep update
 ```
 这里可能会出很多问题,导致初始化失败
-最好就是用手机wifi,如果失败的话,多尝试几次,有可能是网络问题.
+最好就是用手机wifi,如果失败的话,多尝试几次,有可能是网络问题.或者加上GitHub加速器
+```bash
+curl https://ghproxy.com/https://github.com/dotnetcore/FastGithub/releases/download/2.1.4/fastgithub_linux-x64.zip
+```
 
 设置环境
 ```bash

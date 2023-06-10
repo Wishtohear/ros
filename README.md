@@ -77,7 +77,7 @@ catkin_create_pkg myrobot std_msgs rospy roscpp
 ```
 修改包的信息
 
-在包目录下有个package.xml文件，记录的包原始数据信息
+在包目录的src/myrobot下有个package.xml文件，记录的包原始数据信息
 
 修改包的名称，版本等信息
 ```xml
@@ -100,15 +100,15 @@ catkin_create_pkg myrobot std_msgs rospy roscpp
 ```
 加入ros包路径
 
-列出与ros有关的环境变量
+列出与ros有关的环境变量,其中ROS_PACKAGE_PATH变量是ROS的包路径
 ```bash
 env|greb ROS
 ```
-新建的catkin工作空间加入包的搜索路径
+要将新建的catkin工作空间加入包的搜索路径
 ```bash
 source ~/catkin_ws/devel/setup.bash
 ```
-编译包
+编译包，python语言需要给文件添加权限
 ```bash
 cd ~/catkin_ws
 catkin_make
@@ -180,6 +180,16 @@ catkin_package(
 ```bash
 cd ~/cakin_ws
 catkin_make
+```
+编译结果产生以下信息就表示成功了
+```c++
+testAction.msg;
+testGoal.msg;
+testResult.msg;
+testFeedback.msg;
+testActionFeedback.msg;
+testActionResult.msg;
+testActionGoal.msg;
 ```
 ### 编写action服务端和客户端
 编写服务端

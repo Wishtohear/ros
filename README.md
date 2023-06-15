@@ -149,7 +149,7 @@ int 64 remained_time
 在CMakelist.txt文件中加入以下内容
 ```js
 find_package(
-    catin REQUIRED
+    catkin REQUIRED
     genmsg
     actionlib_msgs
     actionlib

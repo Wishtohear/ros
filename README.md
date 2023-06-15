@@ -102,7 +102,7 @@ catkin_create_pkg myrobot std_msgs rospy roscpp
 
 列出与ros有关的环境变量,其中ROS_PACKAGE_PATH变量是ROS的包路径
 ```bash
-env|greb ROS
+env|grep ROS
 ```
 要将新建的catkin工作空间加入包的搜索路径
 ```bash

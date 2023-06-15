@@ -244,7 +244,7 @@ rospy.spin()
 ```
 编写客户端
 
-创建testlient.py文件，内容如下
+创建testclient.py文件，内容如下
 ```python
 # ! /usr/bin/env python
 #testlient.py

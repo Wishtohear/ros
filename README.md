@@ -126,7 +126,7 @@ rqt
 ### action程序编写
 创建action
 
-定义action文件，一般在action目录中，扩展名也是一样
+定义action文件，一般在action目录中，扩展名也是一样，创建了一个test.action文件，建议文件管理器里面可视化操作，可视化操作完了就不要打代码了。
 ```bash
 roscd myrobot
 mkdir action

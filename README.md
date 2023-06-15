@@ -178,7 +178,7 @@ catkin_package(
 ```
 用下面命令编译
 ```bash
-cd ~/cakin_ws
+cd ~/catkin_ws
 catkin_make
 ```
 编译结果产生以下信息就表示成功了
